@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/static/jquery-3.2.1.min.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+{#    <script src="/static/login.js"></script>#}
+    <style>
+        .selfStyle {
+            margin-top: 150px;
+        }
+    </style>
+</head>
+<body style="background-color: #28a4c9">
+<div class="container">
+    <div class="col-md-offset-10" style="margin-top: 20px"><a href="/reg/"><input type="button" value="注册"></a></div>
+    <div class="row col-md-4 col-md-offset-4 selfStyle">
+        <form action="/login/" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="control-label" for="username">账号</label>
+                <input type="text" class="form-control" id="username" name="username" aria-describedby="helpBlock2">
+                <span id="helpBlock2" class="help-block"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="password">密码</label>
+                <input type="text" class="form-control" id="password" name="password" aria-describedby="helpBlock2">
+                <span id="helpBlock2" class="help-block"></span>
+            </div>
+                <button type="submit" class="btn btn-primary">登录</button>
+            <h4>{{ info }}</h4>
+        </form>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $.lg();
+    });
+</script>
+
+</body>
+</html>

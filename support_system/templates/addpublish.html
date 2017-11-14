@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加书籍</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/static/jquery-3.2.1.min.js"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+        .container {
+            margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="low">
+        <div class="col-md-9 col-md-offset-1">
+            <form class="form-horizontal" action="/addPublish/" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">出版社名</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="nname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="addr" class="col-sm-2 control-label">出版社地址</label>
+                    <div class="col-sm-10">
+                     <input type="text" class="form-control" id="addr" name="naddr">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
