@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员主页表</title>
+</head>
+<body>
+<p>管理员</p>
+<table style="border: 1px solid;border-collapse: collapse">
+    <a href="/add_questionnaire/">添加</a>
+    <tr>
+        <thead>
+            <tr>
+                <th>调查问卷名称</th>
+                <th>问卷调查班级</th>
+                <th>参与人数</th>
+                <th>问卷选项</th>
+                <th>调查地址</th>
+                <th>查看评分</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for questionnaire_obj in questionnaire_list %}
+                <tr>
+                    <td>{{ questionnaire_obj.title }}</td>
+                    <td>{{ questionnaire_obj.cla.title }}</td>
+                    <td>2/{{ questionnaire_obj.cla.student_set.all|length }}</td>
+                    <td><a href="/edit_questionnaire/{{ questionnaire_obj.id }}">编辑问卷</a></td>
+                    <td>/student/evaluate/{{ questionnaire_obj.cla.id }}/{{ questionnaire_obj.id }}</td>
+                    <td>查看评分</td>
+                    <td>删除</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </tr>
+</table>
+</body>
+</html>

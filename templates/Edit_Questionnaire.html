@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑问卷</title>
+
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <style>
+        .hide {
+            display: none;
+        }
+
+        ol {
+            padding: 0;
+            list-style: none;
+            counter-reset: sectioncounter
+        }
+
+        ol > li:before {
+            content: '问题' counter(sectioncounter) ':';
+            counter-increment: sectioncounter;
+            font-size: 18px;
+            color: #d4d4d4;
+        }
+
+        ol > li:nth-of-type(odd) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">平台首页<span class="sr-only">(current)</span></a></li>
+                <li><a href="#">资产首页</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">任务</a></li>
+                <li><a href="#">通知</a></li>
+                <li><a href="#">消息</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <div class="pull-right"><button type="button" class="btn btn-success" id="add_btn">添加</button><button type="button" class="btn btn-primary" style="margin-left: 5px">保存</button></div>
+            <ol style="padding-top: 35px">
+                {% for item in form_list %}
+                    <li style="margin-top: 10px;border-style:dotted solid;border-width: 1px">
+                        <p class="glyphicon glyphicon-remove pull-right" style="padding: 10px"></p>
+                        <div pk="{{ item.obj.id }}">
+                            <p>问题名称：{{ item.form.caption }}</p>
+                            <p id="question_type">问题类型：{{ item.form.type }}<a href="#" id="add_option" class="{{ item.option_class }}">添加选项</a></p>
+                            <ul>
+                                {% for option in item.options %}
+                                    <li>{{ option.form }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+</div>
+<script src="/static/js/jquery-3.2.1.min.js"></script>
+<script>
+    $("#add_btn").click(function () {
+       var s = '<li style="margin-top: 10px;border-style:dotted solid;border-width: 1px">\n' +
+           '                        <p class="glyphicon glyphicon-remove pull-right" style="padding: 10px"></p>\n' +
+           '                        <div>\n' +
+           '                            <p>问题名称：<input name="caption" value="" maxlength="64" required="" id="id_caption" type="text"></p>\n' +
+           '                            <p id="question_type">问题类型：<select name="type" required="" id="id_type">\n' +
+           '  <option value="">---------</option>\n' +
+           '\n' +
+           '  <option value="1" selected="">打分</option>\n' +
+           '\n' +
+           '  <option value="2">单选</option>\n' +
+           '\n' +
+           '  <option value="3">评价</option>\n' +
+           '\n' +
+           '</select><a href="#" class="hide">添加选项</a></p>\n' +
+           '                            <ul>\n' +
+           '                                \n' +
+           '                            </ul>\n' +
+           '                        </div>\n' +
+           '                    </li>';
+
+        $("ol").append(s);
+    });
+
+    $("ol").on('change','#question_type',function () {
+        alert($(this).children().val());
+        if ($(this).children().val() == 2){
+            $(this).children().filter("#add_option").removeClass("hide");
+        }
+        else {
+            $(this).children().filter("#add_option").addClass("hide");
+        }
+    })
+</script>
+</body>
+</html>
