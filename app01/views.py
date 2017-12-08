@@ -88,7 +88,7 @@ def edit_questionnaire(request,questionnaire_id):
                         # 获取所有的单选的选项
                         def inner_loop(que):
                             option_list=models.Option.objects.filter(question=que)
-                            print("++++++++++++++++++++++",option_list)
+                            # print("++++++++++++++++++++++",option_list)
                             for option in option_list:
                                 yield {"form":Option_Modelform(instance=option),"obj":option}
                         temp["options"]=inner_loop(que)
@@ -123,10 +123,12 @@ def edit_questionnaire(request,questionnaire_id):
 
                 # 如果在数据库中，就更新
                 elif int(item_obj.get("pid")) in question_id_list:
+                    print("这是要更新的问题的ID",int(item_obj.get("pid")))
                     models.Question.objects.filter(id=int(item_obj.get("pid"))).update(caption=item_obj.get("title"),type=item_obj.get("type"))
                     if not item_obj.get("options"):
                         models.Option.objects.filter(question_id=int(item_obj.get("pid"))).delete()
                     else:
+                        models.Option.objects.filter(question_id=int(item_obj.get("pid"))).delete()
                         for option_dic in item_obj.get("options"):
                             models.Option.objects.create(name=option_dic["title"],score=int(option_dic["val"]),question_id=int(item_obj.get("pid")))
         except Exception as e:
