@@ -4,13 +4,13 @@
 l1=[1,2,3,4,5]
 l2=[1,3,5]
 
-l1set=set(l1)
-l2set=set(l2)
+shujuku=set(l1)
+post=set(l2)
 
-print(l1set-l2set)
-print(l2set-l1set)
+print(shujuku-post)
+print(post-shujuku)
 
-if l2set-l1set:
-    print(True)
-else:
-    print(False)
+# if l2set-l1set:
+#     print(True)
+# else:
+#     print(False)

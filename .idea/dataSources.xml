@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="db" uuid="560b9988-5124-479a-ac26-a9aa21deff76">
+    <data-source source="LOCAL" name="db" uuid="ffc52306-d66d-45da-992c-08e372dd9d31">
       <driver-ref>910c5737-9c2b-4206-a5ef-7f5e1c68256e</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>SQLite</remarks>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\Django\questionnaire\db.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:D:\Django\questionnaire_2\db.sqlite3</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>
